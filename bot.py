@@ -16,7 +16,8 @@ async def on_ready():
 
 @client.command()
 async def whois(ctx, id, region):
-    await riotApi.getSummoner(region, id)
+    res = await riotApi.getSummoner(region, id)
+    await ctx.send(res)
     print('command whois called')
 
 
