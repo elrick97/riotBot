@@ -4,3 +4,6 @@ This is a WIP so expect a lot of unhandled errors and within a few days I will p
 
 Feel free to contribute.
 
+## Sneak Peak
+
+https://ibb.co/TgzGdBt
