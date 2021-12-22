@@ -15,9 +15,14 @@ async def on_ready():
 
 
 @client.command()
-async def whois(ctx, id, region):
+async def whois(ctx, region, id):
     res = await riotApi.getSummoner(region, id)
-    await ctx.send(res)
+    embed = discord.Embed()
+    embed.set_author(name=res.name, icon_url=res.profile_icon)
+    embed.title = f'{res.tier} {res.rank}'
+    embed.add_field(name=res.name, value=res.rank, inline=False)
+    #embed.thumbnail = res.emblem
+    await ctx.send(embed=embed)
     print('command whois called')
 
 

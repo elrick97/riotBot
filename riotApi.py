@@ -1,6 +1,8 @@
 from riotwatcher import LolWatcher, ApiError
 import pandas as pd
+from Summoner import Summoner
 import utils
+import discord
 #global variables
 
 api_key = utils.get_keys("./.secret/secrets.json", "RIOT_KEY")
@@ -18,11 +20,34 @@ regions = {"na": "na1",
            "ru": "ru1"}
 
 
-async def getSummoner(name, region):
+async def getSummoner(region, name):
     region = region.lower()
     if region not in regions:
         print("Region not found!")
         return "region not found"
     region = regions[region]
-    me = watcher.summoner.by_name(region, name)
+    try:
+        print(region, name)
+        me = watcher.summoner.by_name(region, name)
+        my_ranked_stats = watcher.league.by_summoner(region, me['id'])
+        return Summoner(me, my_ranked_stats)
+    except:
+        print("summoner not found")
+        return "Summoner not found."
     return me
+
+
+def buildMessage(profile, stats):
+    name = stats[0]['summonerName']
+    profile_icon_id = profile['profileIconId']
+    profile_icon = f'https://ddragon.leagueoflegends.com/cdn/11.24.1/img/profileicon/{profile_icon_id}.png'
+    level = profile['summonerLevel']
+    tier = stats[0]['tier']
+    rank = stats[0]['rank']
+    lp = stats[0]['leaguePoints']
+    wins = stats[0]['wins']
+    losses = stats[0]['losses']
+    wr = int((wins/(wins+losses)) * 100)
+    opgg_url = f'https://{region}.op.gg/summoner/userName={name}'
+    print(name, profile_icon, level, tier,
+          rank, lp, wins, losses, wr, opgg_url)
