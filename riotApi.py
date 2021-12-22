@@ -21,6 +21,7 @@ regions = {"na": "na1",
 
 
 async def getSummoner(region, name):
+    nregion = region
     region = region.lower()
     if region not in regions:
         print("Region not found!")
@@ -30,7 +31,8 @@ async def getSummoner(region, name):
         print(region, name)
         me = watcher.summoner.by_name(region, name)
         my_ranked_stats = watcher.league.by_summoner(region, me['id'])
-        return Summoner(me, my_ranked_stats)
+        print(me, my_ranked_stats)
+        return Summoner(me, my_ranked_stats, nregion)
     except:
         print("summoner not found")
         return "Summoner not found."
