@@ -16,7 +16,8 @@ class Summoner:
         self.losses = stats[0]['losses']
         self.wr = int((self.wins/(self.wins+self.losses)) * 100)
         self.emblem = f'https://lolg-cdn.porofessor.gg/img/s/league-icons-v2/160/{self.getEmblemId()}-1.png'
-        self.opgg_url = f'https://{nregion}.op.gg/summoner/userName={self.name}'
+        self.opgg_url = f'https://{nregion}.op.gg/summoner/userName={self.name}'.replace(
+            " ", "%20")
 
     def getEmblemId(self) -> str:
         if(self.tier == 'IRON'):

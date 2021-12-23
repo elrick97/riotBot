@@ -16,7 +16,13 @@ async def on_ready():
 
 
 @client.command()
-async def whois(ctx, region, id):
+async def whois(ctx, *args):
+    tlist = list(args)
+    region = tlist[0]
+    print(region)
+    del tlist[0]
+    id = " ".join(tlist)
+    print(id)
     print('command whois called')
     res = await riotApi.getSummoner(region, id)
     embed = discord.Embed(color=0x71f79f)
