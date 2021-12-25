@@ -33,8 +33,8 @@ async def whois(ctx, *args):
     embed.add_field(name='WR', value=f'{res.wr}%', inline=True)
     embed.add_field(name='Wins', value=res.wins, inline=True)
     embed.add_field(name='Losses', value=res.losses, inline=True)
+    embed.add_field(name='Queue', value=res.queue, inline=True)
     embed.set_thumbnail(url=res.emblem)
     await ctx.send(embed=embed)
-
 
 client.run(discord_key)

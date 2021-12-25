@@ -27,15 +27,11 @@ async def getSummoner(region, name):
         print("Region not found!")
         return "region not found"
     region = regions[region]
-    try:
-        print(region, name)
-        me = watcher.summoner.by_name(region, name)
-        my_ranked_stats = watcher.league.by_summoner(region, me['id'])
-        print(me, my_ranked_stats)
-        return Summoner(me, my_ranked_stats, nregion)
-    except:
-        print("summoner not found")
-        return "Summoner not found."
+    me = watcher.summoner.by_name(region, name)
+    my_ranked_stats = watcher.league.by_summoner(region, me['id'])
+    return Summoner(me, my_ranked_stats, nregion)
+    print("summoner not found")
+    return "Summoner not found."
     return me
 
 
