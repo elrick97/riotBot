@@ -7,3 +7,9 @@ Feel free to contribute.
 ## Sneak Peak
 
 https://ibb.co/TgzGdBt
+
+## TODOs
+
+* [ ] Display Top 3 Champions with respective win rates from last 20 games. WIP
+* [ ] Enable default region (NA) and be able to change it (per server).
+* [ ] Enable option to look up for a user with specific queue type.
