@@ -7,10 +7,17 @@ QUEUES = {
 class Summoner:
 
     def __init__(self, profile, stats, nregion):
+        if(not bool(profile)):
+            print("summoner not found")
+            self.unranked = True
+            self.error = True
+            self.name = nregion
+            return
         print(profile, stats)
         self.stats = stats
         queue = self.getQueue()
-        if(queue != "weird"):
+        if(queue != "weird" and bool(stats)):
+            self.unranked = False
             self.queue = QUEUES[queue['queueType']]
             self.name = queue['summonerName']
             self.profile_icon_id = profile['profileIconId']
@@ -26,8 +33,14 @@ class Summoner:
             self.opgg_url = f'https://{nregion}.op.gg/summoner/userName={self.name}'.replace(
                 " ", "%20")
         else:
-            self.name = "No Ranked/Flex data"
-            print("GOT HERE")
+            self.unranked = True
+            self.error = False
+            print(queue)
+            self.name = profile['name']
+            self.profile_icon_id = profile['profileIconId']
+            self.profile_icon = f'https://ddragon.leagueoflegends.com/cdn/11.24.1/img/profileicon/{self.profile_icon_id}.png'
+            self.level = profile['summonerLevel']
+            self.tier = 'Unranked'
 
     def getQueue(self):
         for queue in self.stats:

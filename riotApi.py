@@ -25,14 +25,15 @@ async def getSummoner(region, name):
     region = region.lower()
     if region not in regions:
         print("Region not found!")
-        return "region not found"
+        return Summoner({}, {}, 'Region not found')
     region = regions[region]
-    me = watcher.summoner.by_name(region, name)
-    my_ranked_stats = watcher.league.by_summoner(region, me['id'])
-    return Summoner(me, my_ranked_stats, nregion)
-    print("summoner not found")
-    return "Summoner not found."
-    return me
+    try:
+        me = watcher.summoner.by_name(region, name)
+        my_ranked_stats = watcher.league.by_summoner(region, me['id'])
+        return Summoner(me, my_ranked_stats, nregion)
+    except:
+        print("summoner not found")
+        return Summoner({}, {}, 'Summoner not found')
 
 
 def buildMessage(profile, stats):
