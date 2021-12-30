@@ -4,7 +4,7 @@ import riotApi
 from discord.ext import commands
 import utils
 
-client = commands.Bot(command_prefix='/')
+client = commands.Bot(command_prefix='!')
 
 discord_key = utils.get_keys('./.secret/secrets.json', 'BOT_KEY')
 

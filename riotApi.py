@@ -1,5 +1,4 @@
 from riotwatcher import LolWatcher, ApiError
-import pandas as pd
 from Summoner import Summoner
 import utils
 import discord
