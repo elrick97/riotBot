@@ -3,8 +3,10 @@ from Summoner import Summoner
 import utils
 import discord
 #global variables
+import os
 
-api_key = utils.get_keys("./.secret/secrets.json", "RIOT_KEY")
+#api_key = utils.get_keys("./.secret/secrets.json", "RIOT_KEY")
+api_key = os.environ['RIOT_KEY']
 watcher = LolWatcher(api_key)
 region = 'na1'
 regions = {"na": "na1",

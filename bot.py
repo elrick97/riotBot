@@ -3,10 +3,12 @@ from discord.colour import Color
 import riotApi
 from discord.ext import commands
 import utils
+import os
 
 client = commands.Bot(command_prefix='!')
 
-discord_key = utils.get_keys('./.secret/secrets.json', 'BOT_KEY')
+#discord_key = utils.get_keys('./.secret/secrets.json', 'BOT_KEY')
+discord_key = os.environ['DISCORD_KEY']
 
 
 @client.event
